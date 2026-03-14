@@ -1,0 +1,25 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        seek = 0
+        start = 0
+        write = 0
+        n = len(chars)
+
+        while seek < n:
+            if seek + 1 == n or chars[seek] != chars[seek+1]:
+                chars[write] = chars[seek]
+                write += 1
+
+                length = seek - start + 1
+
+                if length > 1:
+                    for c in str(length):
+                        chars[write] = c
+                        write += 1
+
+                start = seek + 1
+
+            seek += 1
+
+        return write 
+            
