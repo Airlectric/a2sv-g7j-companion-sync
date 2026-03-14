@@ -1,0 +1,21 @@
+class Solution:
+    def appendCharacters(self, s: str, t: str) -> int:
+        nt = len(t)
+        ns = len(s)
+
+        ptr_t = 0
+        ptr_s = 0
+
+        match_ = 0
+
+        while ptr_t < nt and ptr_s < ns:
+            if s[ptr_s] == t[ptr_t]:
+                match_ += 1
+                ptr_s += 1
+                ptr_t += 1
+            else:
+                ptr_s += 1
+
+        return nt - match_
+            
+        
