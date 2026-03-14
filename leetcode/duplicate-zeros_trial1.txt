@@ -1,0 +1,31 @@
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        seek = 0
+        hold = 0
+        temp_arr = arr[:]
+
+        while seek < len(arr) and hold < len(arr):
+            if temp_arr[seek] != 0:
+                arr[hold] = temp_arr[seek]
+                hold += 1
+            else:
+                arr[hold] = 0
+
+                if hold + 1 < len(arr):
+                    arr[hold + 1] = 0
+                    hold += 1
+
+                hold += 1
+
+            seek += 1
+                
+            
+
+            
+        
+
+
+        
