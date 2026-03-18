@@ -1,0 +1,25 @@
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = {'a', 'e', 'i', 'o', 'u'}
+        track = defaultdict(int)
+        n = len(s)
+        left = 0
+        count = 0
+        max_v = float('-inf')
+
+        for right in range(n):
+            
+            
+            while right-left+1 > k:
+                if s[left] in vowels:
+                    count -= 1
+                left += 1
+
+            if s[right] in vowels:
+                count += 1
+            
+            max_v = max(count, max_v)
+        
+        return max_v
+
+        
