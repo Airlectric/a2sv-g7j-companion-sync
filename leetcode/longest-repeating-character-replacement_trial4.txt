@@ -1,0 +1,29 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        bucket = defaultdict(int)
+        n = len(s)
+        max_sub = float('-inf')
+        max_val = float('-inf')
+
+
+        left = 0
+
+        for right in range(n):
+            bucket[s[right]] += 1
+            max_val = max(max_val, bucket[s[right]])
+
+            # print(track)
+            while (right-left+1)-max_val > k:
+                bucket[s[left]] -= 1
+                if bucket[s[left]] == 0:
+                    del bucket[s[left]]
+                left += 1
+
+            if (right-left+1)-max_val <=k:
+                max_sub = max(max_sub, right-left+1)
+        
+        return max_sub
+
+
+
+        
