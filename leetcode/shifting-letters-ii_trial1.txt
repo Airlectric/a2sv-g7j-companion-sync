@@ -1,0 +1,36 @@
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        n = len(s)
+        offset = ord('a')
+        chars = []
+        diff_arr = [0] * n
+
+
+        for c in s:
+            char_num = ord(c)-offset
+            chars.append(char_num)
+
+        for start,end,direction in shifts:
+            if direction:
+                diff_arr[start] += 1
+                if end+1 < n:
+                    diff_arr[end+1] -= 1
+            else:
+                diff_arr[start] -= 1
+                if end+1 < n:
+                    diff_arr[end+1] += 1
+
+        for i in range(1,n):
+            diff_arr[i] += diff_arr[i-1]
+        
+        for i in range(n):
+            chars[i] = (chars[i] + diff_arr[i]) % 26
+
+        return ''.join([chr(num+offset) for num in chars])
+        
+        
+
+
+
+
+        
