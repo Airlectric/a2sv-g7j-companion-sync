@@ -1,0 +1,23 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        boat = 0
+        n = len(people)
+        left = 0
+        right = n-1
+        total_w = 0
+
+        while left <= right:
+            total_w += people[right]
+            right -= 1
+            
+            if total_w + people[left] <= limit:
+                left += 1
+            
+            boat += 1
+            total_w = 0
+        
+        return boat
+
+
+        
