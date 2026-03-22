@@ -1,0 +1,21 @@
+class Solution:
+    def pancakeSort(self, arr: List[int]) -> List[int]:
+        n = len(arr)
+        res = []
+
+        for i in range(n-1,-1,-1):
+            max_ele = max(arr[:i+1])
+            idx = arr.index(max_ele)
+
+            if arr[:i+1][-1] != max_ele:
+                res.append(idx+1)
+                arr = arr[:idx+1][::-1] + arr[idx+1:]
+                arr = arr[:i+1][::-1] + arr[i+1:]
+                res.append(i+1)
+        
+        return res
+
+
+
+
+        
