@@ -1,0 +1,26 @@
+class Solution:
+    def countGood(self, nums: List[int], k: int) -> int:
+        count = 0
+        track = defaultdict(int)
+        left = 0
+        n = len(nums)
+        subarray = 0
+
+
+        for right in range(n):
+            count += track[nums[right]]
+            track[nums[right]] += 1
+            
+            while count >= k:
+                track[nums[left]] -= 1
+                
+                count -= track[nums[left]]
+
+                if track[nums[left]] == 0:
+                    del track[nums[left]]
+                
+                subarray += n - right
+                left += 1
+            
+        return subarray
+        
